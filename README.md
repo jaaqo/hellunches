@@ -1,3 +1,4 @@
+# HELLunches
 Simple webscraper with a React.js frontend to display lunches from restaurants I often use.
 
 ## Available Scripts
