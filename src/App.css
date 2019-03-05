@@ -61,4 +61,18 @@
   list-style: none;
   padding: 0.3rem;
   font-size: 2rem;
+  line-height: 2.7rem;
+  margin: 0;
+}
+
+.LunchMenu-MenuLine:last-child {
+  margin-bottom: 3rem;
+}
+
+.LunchMenu-MenuLine:not(:last-child)::after {
+  color: #3194b3;
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  content: "\2014";
 }
