@@ -1,14 +1,14 @@
 import React, { useEffect, useContext, createContext, useReducer } from "react";
-import "./App.css";
 import { getLunches } from "./lunches";
 import moment from "moment";
+import "./App.css";
 
 const AppContext = createContext(null);
 
 const initialState = {
   filter: "today",
   lunches: [],
-  loading: false
+  loading: true
 };
 
 const reducer = (state, action) => {
@@ -109,8 +109,10 @@ const App = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const fetchInitialData = async () => {
+    dispatch({ type: "loading" });
     const lunches = await getLunches();
     dispatch({ type: "lunches", value: lunches });
+    dispatch({ type: "ready" });
   };
 
   useEffect(() => {
@@ -120,8 +122,14 @@ const App = props => {
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       <div className="App">
-        <FilterControls />
-        <Lunches />
+        {state.loading ? (
+          <div className="App-Loader">...</div>
+        ) : (
+          <>
+            <FilterControls />
+            <Lunches />
+          </>
+        )}
       </div>
     </AppContext.Provider>
   );
