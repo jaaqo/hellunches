@@ -74,8 +74,8 @@ const getLunches = async () => {
     }, []);
 
   return [
-    { bistro: "Factory Kamppi", lunches: kamppiLunches },
-    { bistro: "Bruuveri", lunches: bruuverLunches }
+    { name: "Factory Kamppi", lunches: kamppiLunches },
+    { name: "Bruuveri", lunches: bruuverLunches }
   ];
 };
 

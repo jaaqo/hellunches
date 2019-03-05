@@ -7,16 +7,16 @@ const AppContext = createContext(null);
 
 const initialState = {
   filter: "today",
-  lunches: [],
+  restaurants: [],
   loading: true
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "filter":
-      return { ...state, filter: action.value };
-    case "lunches":
-      return { ...state, lunches: action.value };
+      return { ...state, filter: action.payload };
+    case "restaurants":
+      return { ...state, restaurants: action.payload };
     case "loading":
       return { ...state, loading: true };
     case "ready":
@@ -35,13 +35,13 @@ const FilterControls = props => {
   return (
     <div className="Controls">
       <button
-        onClick={() => dispatch({ type: "filter", value: "today" })}
+        onClick={() => dispatch({ type: "filter", payload: "today" })}
         className={filter === "today" ? "button-primary" : ""}
       >
         Today
       </button>
       <button
-        onClick={() => dispatch({ type: "filter", value: "tomorrow" })}
+        onClick={() => dispatch({ type: "filter", payload: "tomorrow" })}
         className={filter === "tomorrow" ? "button-primary" : ""}
       >
         Tomorrow
@@ -52,7 +52,7 @@ const FilterControls = props => {
 
 const Lunches = props => {
   const {
-    state: { lunches, filter }
+    state: { restaurants, filter }
   } = useContext(AppContext);
 
   const today = moment.utc();
@@ -60,18 +60,22 @@ const Lunches = props => {
 
   return (
     <div className="Lunches">
-      {lunches.map((l, i) => {
-        const lunches = l.lunches.filter(d => {
+      {restaurants.map((r, i) => {
+        const lunches = r.lunches.filter(d => {
           if (filter === "today") {
             return today.isSame(d.date, "day");
           } else if (filter === "tomorrow") {
             return tomorrow.isSame(d.date, "day");
+          } else {
+            return false;
           }
         });
+
         const isLunches = lunches.length > 0;
+
         return (
           <div className="LunchMenu" key={i}>
-            <h2>{l.bistro}</h2>
+            <h2>{r.name}</h2>
             <ul className="LunchMenu-Container">
               {isLunches ? (
                 lunches.map((d, i) => {
@@ -111,7 +115,7 @@ const App = props => {
   const fetchInitialData = async () => {
     dispatch({ type: "loading" });
     const lunches = await getLunches();
-    dispatch({ type: "lunches", value: lunches });
+    dispatch({ type: "restaurants", payload: lunches });
     dispatch({ type: "ready" });
   };
 
