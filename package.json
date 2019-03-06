@@ -20,7 +20,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server:dev": "nodemon ./src/server.js"
+    "server:dev": "nodemon ./src/server.js",
+    "lint": "npx eslint src",
+    "format": "npx prettier --write \"**/*.+(js|jsx|ts|tsx|md|css|less|scss|json|yml|yaml)\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,6 +34,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "eslint": "^5.15.1",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-react": "^7.12.4",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4"
   }
 }
