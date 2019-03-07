@@ -20,6 +20,7 @@
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "server:dev": "nodemon ./src/server/index.js",
+    "server:prod": "node ./src/server/index.js",
     "lint": "npx eslint src",
     "prettier": "npx prettier \"**/*.+(js|jsx|ts|tsx|md|css|less|scss|json|yml|yaml)\"",
     "format": "npm run prettier -- --write",
