@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server:dev": "nodemon ./src/server.js",
+    "server:dev": "nodemon ./src/server/index.js",
     "lint": "npx eslint src",
     "prettier": "npx prettier \"**/*.+(js|jsx|ts|tsx|md|css|less|scss|json|yml|yaml)\"",
     "format": "npm run prettier -- --write",
