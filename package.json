@@ -19,6 +19,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
+    "client:deploy": "npm run validate && npm run build && aws s3 --profile personal sync --acl public-read --sse --delete build/ s3://louna.at",
     "server:dev": "nodemon ./src/server/index.js",
     "server:prod": "node ./src/server/index.js",
     "lint": "npx eslint src",
