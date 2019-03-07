@@ -1,7 +1,6 @@
 {
   "name": "hellunches",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
@@ -36,7 +35,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint": "^5.15.1",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-react": "^7.12.4",
     "nodemon": "^1.18.10",

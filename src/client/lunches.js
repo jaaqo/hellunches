@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const base = 'http://localhost:3001/api'
+const base = process.env.REACT_APP_API_URL_BASE
 
 export const getLunches = async () => {
   const {data: lunches} = await axios.get(`${base}/lunches`)
