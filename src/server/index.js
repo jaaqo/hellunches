@@ -79,6 +79,10 @@ const getLunches = async () => {
   ]
 }
 
+app.get('/', (_, res) => {
+  res.send('ok')
+})
+
 app.get('/v1/lunches', async function(req, res) {
   const lunches = await getLunches()
   res.json(lunches)
