@@ -2,3 +2,4 @@ node_modules/
 build/
 .elasticbeanstalk/
 .ebextensions/
+src/client/locales
