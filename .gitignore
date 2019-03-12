@@ -26,3 +26,6 @@ yarn-error.log*
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+src/client/locales/_build/
+src/client/locales/**/*.js

@@ -1,14 +1,24 @@
 import React, {useEffect, useContext, createContext, useReducer} from 'react'
-import {getLunches} from './lunches'
 import moment from 'moment'
+import {I18nProvider} from '@lingui/react'
+import {Trans} from '@lingui/macro'
+import fiMessages from './locales/fi/messages'
+import enMessages from './locales/en/messages'
+import {getLunches} from './lunches'
 import './App.css'
+
+const catalogs = {fi: fiMessages, en: enMessages}
 
 const AppContext = createContext(null)
 
 const initialState = {
   filter: 'today',
   restaurants: [],
-  loading: true
+  loading: true,
+  i18n: {
+    currentLanguage: 'fi',
+    catalogs
+  }
 }
 
 const reducer = (state, action) => {
@@ -21,6 +31,8 @@ const reducer = (state, action) => {
       return {...state, loading: true}
     case 'ready':
       return {...state, loading: false}
+    case 'language':
+      return {...state, i18n: {...state.i18n, currentLanguage: action.payload}}
     default:
       return state
   }
@@ -38,13 +50,13 @@ const FilterControls = () => {
         onClick={() => dispatch({type: 'filter', payload: 'today'})}
         className={filter === 'today' ? 'button-primary' : ''}
       >
-        Today
+        <Trans>Today</Trans>
       </button>
       <button
         onClick={() => dispatch({type: 'filter', payload: 'tomorrow'})}
         className={filter === 'tomorrow' ? 'button-primary' : ''}
       >
-        Tomorrow
+        <Trans>Tomorrow</Trans>
       </button>
     </div>
   )
@@ -125,16 +137,21 @@ const App = () => {
 
   return (
     <AppContext.Provider value={{state, dispatch}}>
-      <div className="App">
-        {state.loading ? (
-          <div className="App-Loader">...</div>
-        ) : (
-          <>
-            <FilterControls />
-            <Lunches />
-          </>
-        )}
-      </div>
+      <I18nProvider
+        language={state.i18n.currentLanguage}
+        catalogs={state.i18n.catalogs}
+      >
+        <div className="App">
+          {state.loading ? (
+            <div className="App-Loader">...</div>
+          ) : (
+            <>
+              <FilterControls />
+              <Lunches />
+            </>
+          )}
+        </div>
+      </I18nProvider>
     </AppContext.Provider>
   )
 }
