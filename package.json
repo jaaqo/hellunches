@@ -42,6 +42,7 @@
     "eslint-plugin-react": "^7.12.4",
     "nodemon": "^1.18.10",
     "prettier": "^1.16.4",
-    "react-app-rewired": "^2.1.0"
+    "react-app-rewired": "^2.1.0",
+    "serve": "^10.1.2"
   }
 }
