@@ -13,10 +13,14 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/client/App.js:43
+#: src/client/App.js:112
+msgid "No lunch"
+msgstr "Ei lounasta"
+
+#: src/client/App.js:53
 msgid "Today"
 msgstr "Tänään"
 
-#: src/client/App.js:49
+#: src/client/App.js:59
 msgid "Tomorrow"
 msgstr "Huomenna"

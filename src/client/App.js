@@ -109,7 +109,7 @@ const Lunches = () => {
               ) : (
                 <li className="LunchMenu-Day">
                   <h3 className="LunchMenu-Date NoLunch">
-                    <i>No lunch</i>
+                    <Trans>No lunch</Trans>
                   </h3>
                 </li>
               )}

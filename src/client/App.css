@@ -60,6 +60,7 @@
 }
 
 .LunchMenu-Date.NoLunch {
+  font-style: italic;
   display: block;
 }
 
