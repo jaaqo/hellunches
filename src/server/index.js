@@ -4,6 +4,7 @@ const cors = require('cors')
 const $ = require('cheerio')
 const moment = require('moment')
 const memoize = require('memoizee')
+const _ = require('lodash')
 
 let app = express()
 app.use(cors())
@@ -20,19 +21,19 @@ const memoizedGET = memoize(asyncGet, {
 })
 
 const KAMPPI_LUNCHES_URL = 'https://factorykamppi.com/lounas/'
-const BRUUVERI_LUNCHES_URL = 'https://bruuveri.fi/lounas/'
+const BRUUVERI_LUNCHES_URL = 'https://www.bruuveri.fi/lounas-menu/'
 
 const getLunches = async () => {
   const {data: bruuveriHTML} = await memoizedGET(BRUUVERI_LUNCHES_URL)
 
-  const bruuveriMenusAsString = $('#menu .add-bottom', bruuveriHTML)
+  const bruuveriMenusAsString = $('.tab-content', bruuveriHTML)
     .text()
     .trim()
 
   const bruuveriDates = bruuveriMenusAsString.match(/\d{1,2}\.\d{1,2}\./g)
 
   const bruuveriLunches = bruuveriMenusAsString
-    .split(/.{2} \d{1,2}\.\d{1,2}\.\n?/)
+    .split(/.*\d{1,2}\.\d{1,2}\.\n?/)
     .filter(s => s)
     .reduce((acc, currentLine, i) => {
       if (!acc[i]) {
@@ -41,14 +42,26 @@ const getLunches = async () => {
         })
       }
 
-      acc[i].menuLines = currentLine.split('\n')
+
+      acc[i].menuLines = currentLine.split(')').map(line => {
+        let l = line;
+
+        if (line.includes('('))
+          l = l + ')'
+
+        l = l.replace(/^[^a-zA-Z]*/, '');
+
+        l = l.charAt(0).toUpperCase() + l.slice(1);
+
+        return l.trim();
+      })
 
       return acc
     }, [])
 
   const {data: kamppiHTML} = await memoizedGET(KAMPPI_LUNCHES_URL)
 
-  const kamppiLunches = $('#content .main .entry-content', kamppiHTML)
+  const allKamppiLunches = $('.lounaslista .list', kamppiHTML)
     .text()
     .trim()
     .split('\n')
@@ -72,6 +85,8 @@ const getLunches = async () => {
         return acc
       }
     }, [])
+
+  const kamppiLunches = _.uniqBy(allKamppiLunches, d => d.date.toString())
 
   return [
     {name: 'Factory Kamppi', lunches: kamppiLunches},
