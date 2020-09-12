@@ -3,25 +3,14 @@
   "version": "0.1.0",
   "dependencies": {
     "@lingui/react": "2.9.1",
-    "axios": "0.20.0",
-    "cheerio": "1.0.0-rc.3",
-    "cors": "2.8.5",
-    "express": "4.17.1",
-    "memoizee": "0.4.14",
-    "moment": "2.27.0",
+    "next": "9.5.3",
     "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-scripts": "3.4.3"
+    "react-dom": "16.13.1"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "npm run i18n:compile && react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject",
-    "client:deploy": "npm run validate && npm run build && aws s3 --profile personal sync --acl public-read --sse --delete build/ s3://louna.at && npm run client:invalidate-cache",
-    "client:invalidate-cache": "aws cloudfront --profile personal create-invalidation --distribution-id E3VSC0Q1JGE3KH --paths '/*'",
-    "server:dev": "nodemon ./src/server/index.js",
-    "server:prod": "node ./src/server/index.js",
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build",
     "lint": "npx eslint src",
     "prettier": "npx prettier \"**/*.+(js|jsx|ts|tsx|md|css|less|scss|json|yml|yaml)\"",
     "format": "npm run prettier -- --write",
@@ -40,16 +29,13 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/core": "7.11.6",
     "@lingui/cli": "2.9.1",
     "@lingui/macro": "2.9.1",
-    "babel-core": "7.0.0-bridge.0",
+    "@types/node": "14.10.1",
+    "@types/react": "16.9.49",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-react": "7.20.6",
-    "lodash": "4.17.20",
-    "nodemon": "2.0.4",
     "prettier": "2.1.1",
-    "react-app-rewired": "2.1.6",
-    "serve": "11.3.2"
+    "typescript": "4.0.2"
   }
 }
