@@ -11,7 +11,8 @@ export const getStaticProps = async () => {
   return {
     props: {
       lunches: JSON.parse(JSON.stringify(lunches))
-    }
+    },
+    revalidate: 60
   }
 }
 
