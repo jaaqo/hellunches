@@ -1,0 +1,85 @@
+.app {
+  padding-top: 3rem;
+  text-align: center;
+}
+
+.controls button {
+  margin: 1rem;
+}
+
+.lunches {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lunchMenu {
+  margin: 2rem 1rem;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 5px;
+  -webkit-box-shadow: 10px 10px 35px -3px rgba(194, 194, 194, 1);
+  -moz-box-shadow: 10px 10px 35px -3px rgba(194, 194, 194, 1);
+  box-shadow: 10px 10px 35px -3px rgba(194, 194, 194, 1);
+  background-color: #fff;
+}
+
+.lunchMenu ul {
+  margin: 0;
+}
+
+.lunchMenu h2 {
+  padding: 1rem;
+  background: #33c3f0;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 2px 2px #3194b3;
+  font-weight: 800;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.lunchMenuContainer {
+  padding: 1rem;
+}
+
+.lunchMenuDay {
+  list-style: none;
+}
+
+.lunchMenuDay:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.lunchMenuDate {
+  display: none;
+}
+
+.lunchMenuDate.noLunch {
+  font-style: italic;
+  display: block;
+}
+
+.lunchMenuMenuLine {
+  list-style: none;
+  padding: 0.3rem;
+  font-size: 2rem;
+  line-height: 2.7rem;
+  margin: 0;
+}
+
+.lunchMenuMenuLine:last-child {
+  margin-bottom: 3rem;
+}
+
+.lunchMenuMenuLine:not(:last-child)::after {
+  color: #3194b3;
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  content: '\2014';
+}

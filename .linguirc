@@ -1,6 +1,0 @@
-{
-   "localeDir": "src/client/locales/",
-   "srcPathDirs": ["src/client"],
-   "format": "po",
-   "sourceLocale": "en"
-}

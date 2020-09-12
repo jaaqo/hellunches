@@ -1,3 +1,7 @@
-export default () => {
-  return <h1>Hello nextjs</h1>
+import App from '../components/App'
+
+const Index = () => {
+  return <App />
 }
+
+export default Index
