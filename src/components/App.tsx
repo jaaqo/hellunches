@@ -1,6 +1,5 @@
 import React, {useEffect, useContext, createContext, useReducer} from 'react'
 import moment from 'moment'
-import {getLunches} from '../api/lunches'
 import styles from './App.module.css'
 import classNames from 'classnames'
 
@@ -8,26 +7,13 @@ const AppContext = createContext(null)
 
 const initialState = {
   filter: 'today',
-  restaurants: [],
-  loading: true
+  lunches: []
 }
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'filter':
       return {...state, filter: action.payload}
-    case 'restaurants':
-      return {
-        ...state,
-        restaurants: action.payload.data || [],
-        error: action.payload.error
-      }
-    case 'loading':
-      return {...state, loading: true}
-    case 'ready':
-      return {...state, loading: false}
-    case 'language':
-      return {...state, i18n: {...state.i18n, currentLanguage: action.payload}}
     default:
       return state
   }
@@ -59,7 +45,7 @@ const FilterControls = () => {
 
 const Lunches = () => {
   const {
-    state: {restaurants, filter}
+    state: {lunches, filter}
   } = useContext(AppContext)
 
   const today = moment.utc()
@@ -67,7 +53,7 @@ const Lunches = () => {
 
   return (
     <div className={styles.lunches}>
-      {restaurants.map((r, i) => {
+      {lunches.map((r, i) => {
         const lunches = r.lunches.filter(d => {
           if (filter === 'today') {
             return today.isSame(d.date, 'day')
@@ -118,19 +104,11 @@ const Lunches = () => {
   )
 }
 
-const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
-
-  const fetchInitialData = async () => {
-    dispatch({type: 'loading'})
-    const lunches = await getLunches()
-    dispatch({type: 'restaurants', payload: lunches})
-    dispatch({type: 'ready'})
-  }
-
-  useEffect(() => {
-    fetchInitialData()
-  }, [])
+const App = ({lunches}) => {
+  const [state, dispatch] = useReducer(reducer, {
+    ...initialState,
+    lunches
+  })
 
   return (
     <AppContext.Provider value={{state, dispatch}}>
