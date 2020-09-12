@@ -30,4 +30,4 @@ yarn-error.log*
 src/client/locales/_build/
 src/client/locales/**/*.js
 
-.next
+.next/
