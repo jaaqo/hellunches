@@ -1,5 +1,3 @@
-import path from 'path'
-import glob from 'glob'
 import {get} from './fetch'
 import restaurants from './restaurants'
 

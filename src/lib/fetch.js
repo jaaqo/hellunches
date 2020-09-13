@@ -9,7 +9,7 @@ const TWO_HOURS = 1000 * 60 * 60 * 2
 
 const memoizedGET = memoize(asyncGet, {
   promise: true,
-  maxAge: TWO_HOURS
+  maxAge: 0
 })
 
 export const get = memoizedGET
