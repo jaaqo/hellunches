@@ -18,7 +18,6 @@
     "dev": "next dev",
     "start": "next start",
     "build": "next build",
-    "postbuild": "next-on-netlify",
     "lint": "npx eslint src",
     "prettier": "npx prettier \"**/*.+(js|jsx|ts|tsx|md|css|less|scss|json|yml|yaml)\"",
     "format": "npm run prettier -- --write",
