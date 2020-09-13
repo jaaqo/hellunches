@@ -1,5 +1,6 @@
 {
   "name": "hellunches",
+  "license": "MIT",
   "version": "0.1.0",
   "dependencies": {
     "@lingui/react": "2.9.1",
