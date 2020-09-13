@@ -2,3 +2,9 @@
   command   = "yarn build"
   functions = "out_functions"
   publish   = "out_publish"
+[dev]
+  command = "yarn start"
+  targetPort = 3000
+  framework = "#custom"
+  functions = "out_functions"
+  publish   = "out_publish"
