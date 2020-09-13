@@ -5,13 +5,14 @@ const Index = ({lunches}) => {
   return <App lunches={lunches} />
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const lunches = await getLunches()
 
   return {
     props: {
       lunches: JSON.parse(JSON.stringify(lunches))
-    }
+    },
+    revalidate: 60 * 60
   }
 }
 
