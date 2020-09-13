@@ -1,7 +1,7 @@
 import App from '../components/App'
 import getLunches from '../lib/lunches'
 
-const Index = ({lunches, r}) => {
+const Index = ({lunches}) => {
   return <App lunches={lunches} />
 }
 
