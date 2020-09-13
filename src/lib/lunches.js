@@ -1,9 +1,8 @@
-import {get} from './fetch'
 import restaurants from './restaurants'
 
 const getLunches = async () => {
   const fetchLunchJobs = restaurants.map(async ({url, getLunches, name}) => {
-    const {data: html} = await get(url)
+    const {data: html} = await axios.get(url)
     const lunches = await getLunches(html)
     return {name, lunches}
   })
