@@ -92,7 +92,7 @@ const Lunches = () => {
                   <h3
                     className={classNames(styles.lunchMenuDate, styles.noLunch)}
                   >
-                    No lunch
+                    No lunch data available
                   </h3>
                 </li>
               )}
